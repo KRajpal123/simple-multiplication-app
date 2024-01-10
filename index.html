@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple-Multiplication-App</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Courier New", Courier, monospace;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100%;
+        height: 100vh;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        width: 50vw;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid blanchedalmond;
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px 1px rgba(1, 2, 3, 0.5);
+      }
+      h4 {
+        text-align: center;
+        font-weight: 900;
+        color: green;
+      }
+      hr {
+        max-width: 150px;
+      }
+     .score{
+        display: flex;
+        flex-basis: 80%;
+     }
+      .content {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+      }
+      .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: green;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .input {
+        width: 250px;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+      input {
+        border: 2px solid green;
+        width: 100%;
+        padding: 10px;
+        color: green;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .button {
+        width: 150px;
+        margin: auto;
+      }
+      #btn {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: green;
+        color: white;
+      }
+      .Refresh{
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <div class="content">
+          <div>
+            <h4>Simple-Multiplication-App</h4>
+            <hr />
+          </div>
+          <div class="circle">
+            <span
+              >Score
+              <p style="text-align: center" id="score">0</p></span
+            >
+          </div>
+        </div>
+
+        <div class="score">
+          <h1 id="questions">what is 1 multiply by 1 ?</h1>
+         <p class="Refresh" onclick="onClickReload()">Reload</p>
+        </div>
+        <div class="input">
+          <input type="text" autofocus placeholder="Type your answere" id="inputs" />
+        </div>
+        <div class="button">
+          <button id="btn" onclick="onClickSubmit()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const num1 = Math.ceil(Math.random() * 10);
+      const num2 = Math.ceil(Math.random() * 10);
+      const qtns = document.getElementById("questions");
+      const ans = num1 * num2;
+      const score = document.getElementById("score");
+      const userInput = document.getElementById("inputs");
+      
+      qtns.innerText = `what is ${num1} multiply by ${num2}?`;
+      function onClickSubmit(){
+        let userAns = userInput.value;
+        if(isNaN(userAns || userAns.trim() === "")){
+            return console.log(false);
+        }
+    else{
+        console.log("val",userAns)
+    }
+
+      }
+      function onClickReload(){
+       location.reload()
+      }
+    </script>
+  </body>
+</html>
