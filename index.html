@@ -35,10 +35,10 @@
       hr {
         max-width: 150px;
       }
-     .score{
+      .score {
         display: flex;
         flex-basis: 80%;
-     }
+      }
       .content {
         display: flex;
         justify-content: space-between;
@@ -80,7 +80,7 @@
         background-color: green;
         color: white;
       }
-      .Refresh{
+      .Refresh {
         font-size: 20px;
         cursor: pointer;
         margin-left: 20px;
@@ -105,10 +105,15 @@
 
         <div class="score">
           <h1 id="questions">what is 1 multiply by 1 ?</h1>
-         <p class="Refresh" onclick="onClickReload()">Reload</p>
+          <p class="Refresh" onclick="onClickReload()">Reload</p>
         </div>
         <div class="input">
-          <input type="text" autofocus placeholder="Type your answere" id="inputs" />
+          <input
+            type="text"
+            autofocus
+            placeholder="Type your answere"
+            id="inputs"
+          />
         </div>
         <div class="button">
           <button id="btn" onclick="onClickSubmit()">Submit</button>
@@ -117,27 +122,43 @@
     </div>
 
     <script>
-      const num1 = Math.ceil(Math.random() * 10);
-      const num2 = Math.ceil(Math.random() * 10);
-      const qtns = document.getElementById("questions");
-      const ans = num1 * num2;
       const score = document.getElementById("score");
       const userInput = document.getElementById("inputs");
-      
-      qtns.innerText = `what is ${num1} multiply by ${num2}?`;
-      function onClickSubmit(){
-        let userAns = userInput.value;
-        if(isNaN(userAns || userAns.trim() === "")){
-            return console.log(false);
-        }
-    else{
-        console.log("val",userAns)
-    }
+      let userScored = 0;
+      let ans;
 
+      const generateQtns = () => {
+        const num1 = Math.ceil(Math.random() * 10);
+        const num2 = Math.ceil(Math.random() * 10);
+        ans = num1 * num2;
+        const qtns = document.getElementById("questions");
+        qtns.innerText = `what is ${num1} multiply by ${num2}?`;
+      };
+
+      function onClickSubmit() {
+        let userAns = userInput.value;
+        if (isNaN(userAns) || userAns.trim() === "") {
+          return alert("Enter numbers only");
+        }
+        userAns = parseInt(userAns);
+        if (ans === userAns) {
+          userScored++;
+          userInput.value = "";
+        } else {
+          userScored--;
+          userInput.value = "";
+        }
+        score.innerHTML = userScored;
+        generateQtns();
       }
-      function onClickReload(){
-       location.reload()
+
+      function onClickReload() {
+        userScored = 0;
+        location.reload();
+        generateQtns();
       }
+
+      generateQtns();
     </script>
   </body>
 </html>
